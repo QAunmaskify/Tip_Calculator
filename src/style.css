@@ -10,6 +10,7 @@
   --color-white: hsl(0, 0%, 100%);
   --color-disable: hsl(183, 65%, 30%);
   --color-active-state: hsla(171, 59%, 70%, 0.966);
+  --color-danger: rgb(255, 96, 122);
 }
 
 #root {
@@ -104,6 +105,7 @@ body {
   width: 5%;
   padding: 0.3rem 0;
   font-size: 2.2rem;
+  font-weight: 700;
   outline: none;
   cursor: pointer;
   text-align: right;
@@ -122,6 +124,7 @@ body {
 
 .input-box input::placeholder {
   color: var(--color-grayish-cyan);
+  font-weight: 700;
 }
 
 .label {
@@ -130,7 +133,25 @@ body {
   text-indent: 3.2px;
   font-weight: 700;
   color: var(--color-grayish-cyan);
+  position: relative;
 }
+
+.error {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: small;
+  color: var(--color-danger);
+}
+
+.hidden {
+  display: none;
+}
+
+/* .label {
+  font-size: 1.7rem;
+  font-weight: 700;
+} */
 
 .tip-options {
   display: grid;
@@ -183,14 +204,40 @@ button {
   font-family: inherit;
 }
 
+button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button .percent::after {
+  content: "%";
+  font-size: 1.8rem;
+}
+
+.btn-disable {
+  background-color: hsl(183, 84%, 24%);
+  color: hsl(183, 100%, 15%);
+}
+
+.btn-active {
+  background-color: var(--color-primary);
+  color: hsl(183, 100%, 15%);
+}
+
 /* button:hover {
   background-color: var(--color-active-state) !important;
   color: var(--color-dark-cyan) !important;
 } */
 
+.selected,
 button:active {
   color: var(--color-dark-cyan) !important;
   background-color: var(--color-primary) !important;
+}
+
+.danger {
+  border: 2px solid var(--color-danger);
 }
 
 .display {
@@ -323,10 +370,6 @@ em {
 
   .display {
     padding: 2.5rem 2rem 1.5rem;
-  }
-  .label {
-    font-size: 1.7rem;
-    font-weight: 700;
   }
 
   .inputs {
