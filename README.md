@@ -153,9 +153,9 @@ Areas to focus on in future projects are:
 
 - [PX, EM or REM Media queries](https://zellwk.com/blog/media-query-units/) - This helps me understand better why **EM** is favourably accepted over other units in writing media query.
 
--[Basic concepts of flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox) - This gives best explanations why my boxes behave the way they are with this declaration `.block-or-inline {display: flex}`.
+- [Basic concepts of flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox) - This gives best explanations why my boxes behave the way they are with this declaration `.block-or-inline {display: flex}`.
 
--[Complete guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Complete guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
 ## Author
 
