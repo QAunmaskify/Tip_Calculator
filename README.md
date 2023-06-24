@@ -107,7 +107,7 @@ Other CSS code I find interesting in regard to this project:
 }
 ```
 
-````CSS pseudo-class
+```CSS pseudo-class
 .tip-options input:focus {
   border: 2px solid var(--color-primary);
 }
@@ -122,7 +122,7 @@ button .percent::after {
 
 ```html
 <section>Delineate section of html block</section>
-````
+```
 
 ```js Destructuring Assignment, default export and children props (Reusable Component)
 import React from "react";
