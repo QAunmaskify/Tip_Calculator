@@ -24,11 +24,11 @@ The Splitter tip calculator's functionality is modelled on equal tip distributio
 of tip-eligible people/staffs/workers/employees. The Splitter calculates by splitting the total aggregate collection of money/bill at specific X percents for N number of person.
 
 ```To calculate tip per person, I use this formulae:
-**tip** = bill * X/100N
+tip = bill * X/100N
 ```
 
 ```To calculate the paid amount per person, I use this formulae:
-**Amount** = bill * (1/N + X/100N)
+Amount = bill * (1/N + X/100N)
 ```
 
 ### The challenge
