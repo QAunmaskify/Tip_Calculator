@@ -1,6 +1,6 @@
 import React from "react";
 
-import InputField from "./InputField";
+import Input from "./Input";
 import SelectTips from "./SelectTips";
 import Display from "./Display";
 
@@ -9,19 +9,32 @@ function TipCalculator() {
   const [nPersons, setNPersons] = React.useState("");
   const [tipPercent, setTipPercent] = React.useState(null);
 
+  /**Allow or support characters pattern */
+  const pattern = /^\d+$|(?=^.{1,}$)^\d+\.\d{0,2}$/g;
+
+  function handleSetBill(evt) {
+    let value = evt.target.value;
+    // Remove ',' in the formatted string
+    value = value?.replace(/,/g, "");
+
+    const isMatch = pattern.test(value);
+    let format;
+
+    if (isMatch || value.length === 0) {
+      /**Format bill field with , */
+      format = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      setBill(format);
+    }
+  }
+
   function handleSelect(evt) {
-    const selectedValue = Number(evt.target.textContent);
+    const selectedValue = +evt.target.textContent;
     setTipPercent(selectedValue);
   }
 
-  function handleInputBill(evt) {
-    const value = evt.target.value;
-    setBill(value);
-  }
-
   function handleInputPersons(evt) {
-    const value = Number(evt.target.value);
-    setNPersons(value);
+    const value = +evt.target.value;
+    if (isFinite(value)) setNPersons(value);
   }
 
   function handleReset() {
@@ -33,15 +46,16 @@ function TipCalculator() {
   return (
     <div className="tip">
       <div className="inputs">
-        <InputField
+        <Input
+          type="text"
           emoji="icon-dollar.svg"
           value={bill}
-          onChange={handleInputBill}
+          onChange={handleSetBill}
         >
           Bill
-        </InputField>
+        </Input>
         <SelectTips tipPercent={tipPercent} onSelect={handleSelect} />
-        <InputField
+        <Input
           emoji="icon-person.svg"
           className="danger"
           nPersons={nPersons}
@@ -50,7 +64,7 @@ function TipCalculator() {
           err="Can't be zero"
         >
           Number of people
-        </InputField>
+        </Input>
       </div>
       <Display
         percent={tipPercent}
