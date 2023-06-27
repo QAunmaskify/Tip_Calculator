@@ -1,9 +1,20 @@
-function Button({ className, textColor, bgColor, onClick, children }) {
+function Button({ type, value, children, className, onClick, ...otherProps }) {
+  const { toggle, idx, onToggle } = otherProps;
+  const curSelect = idx === toggle;
+
+  function handleToggle() {
+    onToggle(curSelect ? null : idx);
+  }
   return (
     <button
-      style={{ color: textColor, backgroundColor: bgColor }}
-      className={className}
-      onClick={onClick}
+      type={type}
+      value={value}
+      style={{
+        color: otherProps.textColor,
+        backgroundColor: otherProps.bgColor,
+      }}
+      className={curSelect ? "selected" : "btn-primary"}
+      onClick={handleToggle}
     >
       {children}
     </button>
