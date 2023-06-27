@@ -1,5 +1,7 @@
 function Button({ type, value, children, className, onClick, ...otherProps }) {
   const { toggle, idx, onToggle } = otherProps;
+
+  // Derived State base on toggle
   const curSelect = idx === toggle;
 
   function handleToggle() {
