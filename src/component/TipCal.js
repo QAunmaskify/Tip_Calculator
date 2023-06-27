@@ -48,6 +48,8 @@ function TipCalculator() {
       <div className="inputs">
         <Input
           type="text"
+          inputMode="numeric"
+          placeholder="0"
           emoji="icon-dollar.svg"
           value={bill}
           onChange={handleSetBill}
@@ -56,12 +58,15 @@ function TipCalculator() {
         </Input>
         <SelectTips tipPercent={tipPercent} onSelect={handleSelect} />
         <Input
+          type="number"
+          placeholder="0"
+          minimum="0"
           emoji="icon-person.svg"
           className="danger"
           nPersons={nPersons}
           value={nPersons}
           onChange={handleInputPersons}
-          err="Can't be zero"
+          errorMessage="Can't be zero"
         >
           Number of people
         </Input>
