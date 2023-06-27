@@ -27,6 +27,7 @@ function Input({
           inputMode={otherProps.inputMode}
           placeholder={placeholder}
           value={otherProps.value}
+          min={otherProps.minimum}
           onChange={onChange}
         />
       </div>
