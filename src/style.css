@@ -18,6 +18,10 @@
   /*color: hsl(172, 100%, 81%); for testing purposes */
 }
 
+/*****************************
+      BASIC RESET
+*****************************/
+
 *,
 *::after,
 *::before {
@@ -25,6 +29,16 @@
   padding: 0;
   box-sizing: inherit;
   /* font-family: inherit; */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 html {
