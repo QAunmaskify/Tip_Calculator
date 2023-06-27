@@ -1,30 +1,32 @@
 function Input({
   type,
-  inputMode,
-  nPersons,
-  emoji,
+  placeholder,
   className,
-  err,
   children,
-  value,
   onChange,
-}) {
+  ...otherProps
+} = {}) {
   return (
     <section>
       <p className="label">
         {children}{" "}
-        <span className={nPersons === 0 ? "error" : "hidden"}>{err}</span>
+        <span className={otherProps.nPersons === 0 ? "error" : "hidden"}>
+          {otherProps.err}
+        </span>
       </p>
 
       <div
-        className={`input-box ${nPersons === 0 ? className : ""}`}
-        style={{ borderColor: nPersons === 0 ? "rgb(255, 96, 122)" : "" }}
+        className={`input-box ${otherProps.nPersons === 0 ? className : ""}`}
+        style={{
+          borderColor: otherProps.nPersons === 0 ? "rgb(255, 96, 122)" : "",
+        }}
       >
-        <img src={`/images/${emoji}`} alt={emoji} />
+        <img src={`/images/${otherProps.emoji}`} alt={otherProps.emoji} />
         <input
-          inputmode={type}
-          placeholder="0"
-          value={value}
+          type={type}
+          inputMode={otherProps.inputMode}
+          placeholder={placeholder}
+          value={otherProps.value}
           onChange={onChange}
         />
       </div>
