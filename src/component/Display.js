@@ -1,4 +1,3 @@
-import Button from "./Button";
 import Reset from "./Reset";
 
 function Display({ percent, nPersons, bill, onClick, onReset }) {
