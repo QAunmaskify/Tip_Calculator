@@ -11,7 +11,7 @@ function Input({
       <p className="label">
         {children}{" "}
         <span className={otherProps.nPersons === 0 ? "error" : "hidden"}>
-          {otherProps.err}
+          {otherProps.errorMessage}
         </span>
       </p>
 
