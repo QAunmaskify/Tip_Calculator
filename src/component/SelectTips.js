@@ -1,12 +1,24 @@
 import React from "react";
-
 import Button from "./Button";
 
-function SelectTips({ tipPercent, onSelect }) {
-  const options = [5, 10, 15, 25, 50];
+const options = [5, 10, 15, 25, 50];
 
-  // Derived state
-  const curSelect = options.indexOf(tipPercent);
+function SelectTips({
+  onSetPercent,
+  customTipPercent,
+  setCustomTipPercent,
+  toggle,
+  handleCustomTipPercent,
+  setToggle,
+}) {
+  // const [toggle, setToggle] = React.useState(null);
+  // const [customTipPercent, setCustomTipPercent] = React.useState("");
+
+  // function handleCustomTipPercent(evt) {
+  //   setCustomTipPercent(evt.target.value);
+  //   if (toggle === null) onSetPercent(undefined, evt.target.value);
+  // }
+
   return (
     <>
       <p className="label" style={{ marginBottom: "1.2rem" }}>
@@ -15,11 +27,14 @@ function SelectTips({ tipPercent, onSelect }) {
       <section className="tip-options">
         {options.map((option, idx) => (
           <Button
+            type="button"
+            value={option}
+            idx={idx}
+            toggle={toggle}
             key={idx}
-            bgColor="hsl(183, 100%, 15%)"
-            textColor="hsl(189, 41%, 97%)"
-            className={idx === curSelect ? "selected" : ""}
-            onClick={onSelect}
+            onCustomPercent={setCustomTipPercent}
+            onToggle={setToggle}
+            onSetPercent={onSetPercent}
           >
             <span
               style={{ fontSize: "2.1rem", fontWeight: 700 }}
@@ -27,13 +42,17 @@ function SelectTips({ tipPercent, onSelect }) {
             >
               {option}
             </span>
-            {/* <span style={{ fontSize: "1.8rem" }}>%</span> */}
           </Button>
         ))}
-        {/* <ul>
-            <li></li>
-          </ul> */}
-        <input type="text" placeholder="Custom" />
+
+        <input
+          type="number"
+          min="0"
+          value={customTipPercent}
+          placeholder="Custom"
+          onFocus={() => setToggle(null)}
+          onChange={handleCustomTipPercent}
+        />
       </section>
     </>
   );

@@ -1,5 +1,5 @@
 function Button({ type, value, children, className, onClick, ...otherProps }) {
-  const { toggle, idx, onToggle } = otherProps;
+  const { toggle, idx, style, onToggle, onSetPercent } = otherProps;
 
   // Derived State base on toggle
   const curSelect = idx === toggle;
@@ -11,12 +11,15 @@ function Button({ type, value, children, className, onClick, ...otherProps }) {
     <button
       type={type}
       value={value}
-      style={{
-        color: otherProps.textColor,
-        backgroundColor: otherProps.bgColor,
-      }}
+      style={style}
       className={curSelect ? "selected" : "btn-primary"}
-      onClick={handleToggle}
+      onClick={(evt) => {
+        handleToggle();
+        onSetPercent(evt);
+
+        /** Explain Better Please! */
+        if (toggle === null) otherProps.onCustomPercent("");
+      }}
     >
       {children}
     </button>

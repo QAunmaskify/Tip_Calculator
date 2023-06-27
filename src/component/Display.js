@@ -1,13 +1,17 @@
 import Button from "./Button";
+import Reset from "./Reset";
 
-function Display({ percent, nPersons, bill, onClick }) {
+function Display({ percent, nPersons, bill, onClick, onReset }) {
+  const amount = +bill?.replace(/,/g, "");
+  const nps = +nPersons;
+  const percentage = +percent;
+
   let tip = 0;
   let totalAmount = 0;
 
-  if (Number(bill) && Number(percent) && Number(nPersons)) {
-    tip = (Number(bill) * Number(percent)) / (Number(nPersons) * 100);
-    totalAmount =
-      (Number(bill) * (100 + Number(percent))) / (100 * Number(nPersons));
+  if (percentage > 0) {
+    tip = (amount * percentage) / (nps * 100);
+    totalAmount = ((100 + percentage) * amount) / (nps * 100);
   }
 
   return (
@@ -19,7 +23,10 @@ function Display({ percent, nPersons, bill, onClick }) {
             <span className="label-person">/ person</span>
           </p>
           <span className="result-output">
-            ${tip ? tip.toFixed(2) : "0.00"}
+            $
+            {isFinite(tip)
+              ? String(tip.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : "0.00"}
           </span>
         </li>
         <li>
@@ -28,22 +35,38 @@ function Display({ percent, nPersons, bill, onClick }) {
             <span className="label-person">/ person</span>
           </p>
           <span className="result-output">
-            ${totalAmount ? totalAmount.toFixed(2) : "0.00"}
+            $
+            {isFinite(totalAmount)
+              ? String(totalAmount.toFixed(2)).replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  ","
+                )
+              : "0.00"}
           </span>
         </li>
       </ul>
-      <Button
-        className={
-          percent > 0 && bill > 0 && nPersons > 0 ? "btn-active" : "btn-disable"
+
+      <Reset
+        type="reset"
+        style={
+          percentage > 0 && amount > 0 && nps > 0
+            ? {
+                backgroundColor: "hsl(172, 67%, 45%)",
+                color: "hsl(183, 100%, 15%)",
+              }
+            : {
+                backgroundColor: "hsl(183, 84%, 24%)",
+                color: "hsl(183, 100%, 15%)",
+              }
         }
-        onClick={onClick}
+        onReset={onReset}
       >
         <span
           style={{ fontSize: "1.6rem", fontWeight: "700", padding: ".35rem" }}
         >
           {"Reset".toUpperCase()}
         </span>
-      </Button>
+      </Reset>
     </div>
   );
 }

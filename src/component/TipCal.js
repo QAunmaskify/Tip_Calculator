@@ -6,14 +6,18 @@ import Display from "./Display";
 
 function TipCalculator() {
   const [bill, setBill] = React.useState("");
-  const [nPersons, setNPersons] = React.useState("");
   const [tipPercent, setTipPercent] = React.useState(null);
+  const [nPersons, setNPersons] = React.useState("");
+  const [toggle, setToggle] = React.useState(null);
+  const [customTipPercent, setCustomTipPercent] = React.useState("");
 
   /**Allow or support characters pattern */
   const pattern = /^\d+$|(?=^.{1,}$)^\d+\.\d{0,2}$/g;
 
   function handleSetBill(evt) {
     let value = evt.target.value;
+
+    if (value === "0") return;
     // Remove ',' in the formatted string
     value = value?.replace(/,/g, "");
 
@@ -27,20 +31,26 @@ function TipCalculator() {
     }
   }
 
-  function handleSelect(evt) {
-    const selectedValue = +evt.target.textContent;
-    setTipPercent(selectedValue);
+  function handleSelectPercent(evt, value) {
+    if (value === undefined) setTipPercent(+evt.target?.textContent);
+    else if (value !== undefined) setTipPercent(+value);
   }
 
   function handleInputPersons(evt) {
-    const value = +evt.target.value;
-    if (isFinite(value)) setNPersons(value);
+    setNPersons(evt.target.value);
   }
 
   function handleReset() {
     setNPersons("");
     setBill("");
     setTipPercent(null);
+    setToggle(null);
+    setCustomTipPercent("");
+  }
+
+  function handleCustomTipPercent(evt) {
+    setCustomTipPercent(evt.target.value);
+    if (toggle === null) handleSelectPercent(undefined, evt.target.value);
   }
 
   return (
@@ -56,11 +66,19 @@ function TipCalculator() {
         >
           Bill
         </Input>
-        <SelectTips tipPercent={tipPercent} onSelect={handleSelect} />
+        <SelectTips
+          tipPercent={tipPercent}
+          toggle={toggle}
+          setToggle={setToggle}
+          customTipPercent={customTipPercent}
+          setCustomTipPercent={setCustomTipPercent}
+          onSetPercent={handleSelectPercent}
+          handleCustomTipPercent={handleCustomTipPercent}
+        />
         <Input
           type="number"
           placeholder="0"
-          minimum="0"
+          minimum="1"
           emoji="icon-person.svg"
           className="danger"
           nPersons={nPersons}
@@ -75,6 +93,7 @@ function TipCalculator() {
         percent={tipPercent}
         bill={bill}
         nPersons={nPersons}
+        onReset={handleReset}
         onClick={handleReset}
       />
     </div>

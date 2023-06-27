@@ -230,13 +230,13 @@ button .percent::after {
 }
 
 .btn-disable {
-  background-color: hsl(183, 84%, 24%);
-  color: hsl(183, 100%, 15%);
+  background-color: hsl(183, 84%, 24%) !important;
+  color: hsl(183, 100%, 15%) !important;
 }
 
 .btn-active {
-  background-color: var(--color-primary);
-  color: hsl(183, 100%, 15%);
+  background-color: var(--color-primary) !important;
+  color: hsl(183, 100%, 15%) !important;
 }
 
 /* button:hover {
@@ -244,10 +244,15 @@ button .percent::after {
   color: var(--color-dark-cyan) !important;
 } */
 
+.btn-primary {
+  background-color: var(--color-dark-cyan);
+  color: var(--color-vlight-grayish-cyan);
+}
+
 .selected,
-button:active {
-  color: var(--color-dark-cyan) !important;
-  background-color: var(--color-primary) !important;
+button:hover {
+  color: var(--color-dark-cyan);
+  background-color: var(--color-primary);
 }
 
 .danger {

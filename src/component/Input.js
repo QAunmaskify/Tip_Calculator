@@ -10,15 +10,15 @@ function Input({
     <section>
       <p className="label">
         {children}{" "}
-        <span className={otherProps.nPersons === 0 ? "error" : "hidden"}>
+        <span className={otherProps.nPersons === "0" ? "error" : "hidden"}>
           {otherProps.errorMessage}
         </span>
       </p>
 
       <div
-        className={`input-box ${otherProps.nPersons === 0 ? className : ""}`}
+        className={`input-box ${otherProps.nPersons === "0" ? className : ""}`}
         style={{
-          borderColor: otherProps.nPersons === 0 ? "rgb(255, 96, 122)" : "",
+          borderColor: otherProps.nPersons === "0" ? "rgb(255, 96, 122)" : "",
         }}
       >
         <img src={`/images/${otherProps.emoji}`} alt={otherProps.emoji} />
